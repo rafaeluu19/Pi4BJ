@@ -18,6 +18,14 @@ public class GPIOPin {
         {
             writeToFile("/sys/class/gpio/export", pin);
         }
+        else
+        {
+            File directionFile = new File("/sys/class/gpio/gpio"+pin,"direction");
+            if (!directionFile.canWrite())
+            {
+                throw new IOException("Permission denied for GPIO"+pin+"-try running as root or check if it's in use.");
+            }
+        }
     }
 
     //Sets "in" or "out mode"
