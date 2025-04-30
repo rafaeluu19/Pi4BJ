@@ -1,12 +1,27 @@
 import gpio.GPIOPin;
 import java.io.IOException;
 
-public class TestGPIO {
-    public static void main(String[] args) {
-        try {
+public class TestBlink 
+{
+    private GPIOPin pin; 
+    
+    public class TestBlink
+    {
+        try 
+        {
             GPIOPin pin = new GPIOPin("17"); // BCM pin 17
             pin.setDirection("out");
+        }
+        catch (IOException | InterruptedException e)
+        {
+            System.out.println("Error: "+e.getMessage());
+        }
+    }
 
+    public void blinkLights()
+    {
+        try
+        {
             System.out.println("Turning ON the LED...");
             pin.setValue(true); // LED ON
             Thread.sleep(1000); // Wait 1 second
@@ -16,9 +31,10 @@ public class TestGPIO {
 
             pin.unexport(); // Clean up
             System.out.println("GPIO pin unexported.");
-
-        } catch (IOException | InterruptedException e) {
+        }
+        catch (IOException | InterruptedException e) 
+        {
             System.out.println("Error: " + e.getMessage());
         }
-    }
+    }    
 }
