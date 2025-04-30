@@ -54,4 +54,10 @@ public class GPIOPin {
     {
         writeToFile("/sys/class/gpio/unexport", pin);
     }
+    
+    //Returns the String value for the pin
+    public String getPin() throws IOException
+    {
+        return pin;
+    }
 }
