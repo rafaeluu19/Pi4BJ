@@ -1,5 +1,4 @@
 package gpio;
-
 import java.io.*;
 
 public class GPIOPin {
@@ -18,7 +17,6 @@ public class GPIOPin {
         {
             writeToFile("/sys/class/gpio/export", pin);
         }
-        else
         {
             File directionFile = new File("/sys/class/gpio/gpio"+pin,"direction");
             if (!directionFile.canWrite())
@@ -54,10 +52,23 @@ public class GPIOPin {
     {
         writeToFile("/sys/class/gpio/unexport", pin);
     }
-    
+
     //Returns the String value for the pin
     public String getPin() throws IOException
     {
         return pin;
+    }
+
+    public void pause(int milliseconds)
+    {
+        try
+        {
+            Thread.sleep(milliseconds);
+        }
+        catch (InterruptedException e)
+        {
+            System.out.println("Pause Interrupted: " + e.getMessage());
+            Thread.currentThread().interrupt(); //restore interrupt status
+        }
     }
 }

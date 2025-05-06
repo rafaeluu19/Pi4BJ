@@ -1,3 +1,4 @@
+
 import gpio.GPIOPin;
 import java.io.IOException;
 
@@ -5,14 +6,14 @@ public class TestBlink
 {
     private GPIOPin pin; 
     
-    public class TestBlink
+    public TestBlink()
     {
         try 
         {
-            GPIOPin pin = new GPIOPin("17"); // BCM pin 17
+            pin = new GPIOPin("17"); // BCM pin 17
             pin.setDirection("out");
-        }
-        catch (IOException | InterruptedException e)
+        } 
+        catch (IOException e)
         {
             System.out.println("Error: "+e.getMessage());
         }
